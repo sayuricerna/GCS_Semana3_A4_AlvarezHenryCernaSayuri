@@ -2,13 +2,18 @@
 
 Todos los cambios importantes del Sistema de Gestión de Citas Médicas del Consultorio MATER se registran en este archivo.
 
-## [Sin publicar]
+## [1.1.0] - 2026-07-31
 
-### Pendiente
+### Agregado
 
-- Incorporar la prueba de rendimiento para consultas de disponibilidad.
-- Verificar que el 95 % de las consultas responda en un máximo de 2 segundos.
-- Registrar el cambio realizado después de la línea base `v1.0`.
+- Prueba de rendimiento para la consulta de disponibilidad.
+- Ejecución de 100 consultas para verificar el tiempo de respuesta.
+- Validación de que al menos el 95 % de las consultas responde en un máximo de 2 segundos.
+
+### Validación
+
+- Las siete pruebas automatizadas finalizaron correctamente.
+- El cambio fue realizado después de la línea base `v1.0`.
 
 ## [1.0.0] - 2026-07-31
 
