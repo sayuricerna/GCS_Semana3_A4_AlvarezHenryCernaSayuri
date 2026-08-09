@@ -117,5 +117,34 @@ class TestAppointmentValidation(unittest.TestCase):
         ) * 100
 
         self.assertGreaterEqual(compliance_percentage, 95)
+
+    def test_duplicate_blocked_with_extra_spaces_in_time(self):
+        """CR-004-SEM4-ALVAREZ-CERNA: detecta el mismo horario aunque llegue
+        con espacios extra, como puede ocurrir cuando distintas
+        recepcionistas registran la cita en horas pico.
+        """
+        result = is_slot_available(
+            self.existing_appointments,
+            "2026-08-10",
+            " 09:00 ",
+        )
+
+        self.assertFalse(result)
+
+    def test_register_appointment_blocks_duplicate_with_format_difference(self):
+        """CR-004-SEM4-ALVAREZ-CERNA: register_appointment también debe
+        rechazar el duplicado aunque el horario tenga espacios extra.
+        """
+        with self.assertRaises(ValueError):
+            register_appointment(
+                self.existing_appointments,
+                "P777",
+                "Otro Paciente",
+                "Consulta general",
+                "2026-08-10",
+                " 09:00 ",
+            )
+
+
 if __name__ == "__main__":
     unittest.main()

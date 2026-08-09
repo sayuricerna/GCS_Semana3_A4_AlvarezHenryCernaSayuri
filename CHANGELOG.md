@@ -2,6 +2,21 @@
 
 Todos los cambios importantes del Sistema de Gestión de Citas Médicas del Consultorio MATER se registran en este archivo.
 
+## [1.1.1] - 2026-08-09
+
+### Corregido
+
+- CR-004-SEM4-ALVAREZ-CERNA: `is_slot_available` y `register_appointment` ahora normalizan (quitan espacios) la fecha y la hora antes de compararlas, evitando citas duplicadas cuando el mismo horario se registra con espacios adicionales (por ejemplo, cuando distintas recepcionistas atienden en horas pico).
+
+### Agregado
+
+- Dos pruebas de regresión que cubren el caso de horario con espacios extra.
+
+### Validación
+
+- Las nueve pruebas automatizadas finalizaron correctamente.
+- El cambio corresponde al tag `v1.0.1`, posterior a la línea base `v1.0`.
+
 ## [1.1.0] - 2026-07-31
 
 ### Agregado
