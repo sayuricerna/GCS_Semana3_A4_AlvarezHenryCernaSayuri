@@ -26,6 +26,7 @@ El control de estos elementos permite mantener la integridad del proyecto, regis
 | EC-06 | `config.example` | `/config/` | Define parámetros que afectan el funcionamiento del sistema sin exponer datos sensibles. | DevOps / Desarrollador |
 | EC-07 | `CM_PLAN.md` | `/` | Identifica los EC, sus responsables, ubicación y reglas para controlar cambios. | Líder del proyecto |
 | EC-08 | `CHANGELOG.md` | `/` | Registra las versiones y modificaciones realizadas durante la evolución del proyecto. | Equipo de desarrollo |
+| EC-09 | `.gitignore` | `/` | Evita versionar archivos temporales y de cache que no son evidencia de negocio. | DevOps |
 
 ## 4. Identificación y versionado
 
