@@ -62,7 +62,7 @@ class TestAppointmentValidation(unittest.TestCase):
         self.assertTrue(result)
 
     def test_occupied_slot(self):
-        """Comprueba que una cita activa duplicada sea rechazada."""
+        """RF-004: una cita activa duplicada debe ser rechazada."""
         result = is_slot_available(
             self.existing_appointments,
             "2026-08-10",
@@ -86,12 +86,19 @@ class TestAppointmentValidation(unittest.TestCase):
         self.assertEqual(len(self.existing_appointments), 2)
 
     def test_cancel_appointment(self):
-        """Comprueba que una cita pueda cambiar a cancelada."""
+        """RF-004: una cita cancelada libera nuevamente el horario."""
         appointment = self.existing_appointments[0]
 
         result = cancel_appointment(appointment)
 
         self.assertEqual(result["status"], "Cancelada")
+        self.assertTrue(
+            is_slot_available(
+                self.existing_appointments,
+                "2026-08-10",
+                "09:00",
+            )
+        )
 
     def test_availability_search_performance(self):
         """Verifica que el 95 % de 100 consultas responda en máximo 2 segundos."""
@@ -144,6 +151,42 @@ class TestAppointmentValidation(unittest.TestCase):
                 "2026-08-10",
                 " 09:00 ",
             )
+
+    def test_slot_check_with_multiple_existing_appointments(self):
+        """RF-004: verifica todas las citas existentes y no solo la primera."""
+        appointments = [
+            {
+                "appointment_date": "2026-08-10",
+                "appointment_time": "08:00",
+                "status": "Confirmada",
+            },
+            {
+                "appointment_date": "2026-08-10",
+                "appointment_time": "08:30",
+                "status": "Pendiente",
+            },
+            {
+                "appointment_date": "2026-08-10",
+                "appointment_time": "09:00",
+                "status": "Confirmada",
+            },
+        ]
+
+        self.assertFalse(
+            is_slot_available(
+                appointments,
+                "2026-08-10",
+                "09:00",
+            )
+        )
+
+        self.assertTrue(
+            is_slot_available(
+                appointments,
+                "2026-08-10",
+                "10:00",
+            )
+        )
 
 
 if __name__ == "__main__":
