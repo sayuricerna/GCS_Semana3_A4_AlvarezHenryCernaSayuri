@@ -1,11 +1,3 @@
-
----
-
-# 2. `CM_PLAN.md`
-
-Este es el documento principal de los **Elementos de Configuración**.
-
-```md
 # Plan de Gestión de Configuración
 
 ## 1. Información general
@@ -83,3 +75,9 @@ Después de establecer la línea base, cualquier modificación deberá quedar re
 | RF-002 Rechazar datos incompletos | `appointment_validation.py` | `test_appointment_with_missing_data` | Resultado de la prueba |
 | RF-003 Verificar disponibilidad | `appointment_validation.py` | `test_available_slot` | Resultado de la prueba |
 | RF-004 Evitar citas duplicadas | `appointment_validation.py` | `test_occupied_slot` | Resultado de la prueba |
+
+## 9. Trazabilidad (ejemplos)
+
+| Issue | PR | Commit(s) | Release | Evidencia |
+|---|---|---|---|---|
+| #1 CR-004 citas duplicadas | #2 | 2909f8c, 9a3d680, 832ca00 | v1.0.1 | PR aprobado + 9/9 tests |
